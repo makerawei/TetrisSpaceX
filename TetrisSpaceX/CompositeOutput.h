@@ -185,7 +185,8 @@ class CompositeOutput
 
   void sendLine()
   {
-    i2s_write_bytes(I2S_PORT, (char*)line, samplesLine * sizeof(unsigned short), portMAX_DELAY);
+    size_t bytes_written;
+    i2s_write(I2S_PORT, (char*)line, samplesLine * sizeof(unsigned short), &bytes_written, portMAX_DELAY);
   }
 
   inline void fillValues(int &i, unsigned char value, int count)
